@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import nextId from 'react-id-generator';
-
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 // import { nanoid } from 'nanoid';
 
 export class App extends Component {
@@ -12,23 +14,21 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    // name: '',
-    // number: '',
   };
 
-  deleteContacts = contactId => {
+  deleteContact = contactId => {
     this.setState(prev => ({
       contacts: prev.contacts.filter(contact => contact.id !== contactId),
     }));
   };
 
-  addContacts = ({ name, number }) => {
+  addContact = ({ name, number }) => {
     if (
       this.state.contacts.find(
-        contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+        contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      alert(`This ${name} is already in contacts`);
+      alert(`${name} is already in contacts`);
     } else {
       this.setState(prev => ({
         contacts: [
@@ -42,4 +42,45 @@ export class App extends Component {
   filterChange = e => {
     this.setState({ filter: e.currentTarget.value });
   };
+
+  render() {
+    const { filter, contacts } = this.state;
+
+    const lowercasedName = filter.toLowerCase();
+    const filteredContacts =
+      this.state.filter !== ''
+        ? contacts.filter(contacts =>
+            contacts.name.toLowerCase().includes(lowercasedName)
+          )
+        : [];
+
+    return (
+      <div>
+        <h1
+          style={{
+            textAlign: 'center',
+            color: '#987654',
+            marginBottom: '0px',
+          }}
+        >
+          Phonebook
+        </h1>
+        <ContactForm onSubmit={this.addContact} />
+        <h2
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          Contacts
+        </h2>
+        <Filter filter={filter} filterChange={this.filterChange} />
+
+        <ContactList
+          contacts={filteredContacts}
+          deleteContact={this.deleteContact}
+          filteredName={filter}
+        />
+      </div>
+    );
+  }
 }
