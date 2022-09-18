@@ -48,6 +48,13 @@ class ContactForm extends Component {
               alignItems: 'center',
               marginRight: 'auto',
               marginLeft: 'auto',
+              borderColor: '#9c6767',
+              outline: 'none',
+              backgroundColor: '#e3dad0',
+              borderRadius: '2%',
+              width: '150px',
+              height: '20px',
+              padding: '5px',
             }}
             type="text"
             name="name"
@@ -66,6 +73,14 @@ class ContactForm extends Component {
               alignItems: 'center',
               marginRight: 'auto',
               marginLeft: 'auto',
+              backgroundColor: '#e3dad0',
+              color: 'black',
+              borderColor: '#9c6767',
+              outline: 'none',
+              borderRadius: '2%',
+              width: '150px',
+              height: '20px',
+              padding: '5px',
             }}
             type="tel"
             name="number"

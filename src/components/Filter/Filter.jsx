@@ -21,10 +21,12 @@ class Filter extends Component {
             marginLeft: 'auto',
             backgroundColor: '#e3dad0',
             color: 'black',
-            borderColor: 'green',
+            border: 'none',
             outline: 'none',
-            borderRadius: '10%',
+            borderRadius: '5%',
             width: '250px',
+            height: '20px',
+            padding: '15px',
           }}
           type="text"
           name="filter"
